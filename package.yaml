@@ -1,5 +1,5 @@
 name: aspectation
-version: 0.0.0.0
+version: 0.1.0.0
 github: githubuser/aspectation
 license-file: [LICENSE-MIT, LICENSE-APACHE]
 author: jinnzest
@@ -9,9 +9,16 @@ extra-source-files:
 - README.md
 - ChangeLog.md
 description: Please see the README on GitHub at <https://github.com/githubuser/aspectation-#readme>
-default-extensions: RankNTypes, NoImplicitPrelude, OverloadedStrings , NamedFieldPuns, RecursiveDo, DeriveGeneric, TupleSections, PackageImports, FlexibleInstances, QuasiQuotes, DerivingVia, LambdaCase, StandaloneKindSignatures
+default-extensions: RankNTypes, NoImplicitPrelude, OverloadedStrings , NamedFieldPuns, RecursiveDo, DeriveGeneric, TupleSections, PackageImports, FlexibleInstances, QuasiQuotes, DerivingVia, LambdaCase, StandaloneKindSignatures, MultiWayIf
 dependencies:
 - base
+- megaparsec
+- text
+- mtl
+- directory
+- mr-env
+- shakespeare
+- hashable
 library:
     source-dirs:
         - src
@@ -25,8 +32,9 @@ library:
         - -Wno-name-shadowing
         - -Wno-all-missed-specialisations
         - -Wno-missed-specialisations
+        - -Wno-missing-role-annotations
 executables:
-    sds:
+    aspectation:
         main: Main.hs
         source-dirs: app
         ghc-options:
@@ -42,9 +50,9 @@ executables:
             - -Wno-all-missed-specialisations
             - -Wno-missed-specialisations
             - -Wno-unused-packages
+            - -Wno-missing-role-annotations
         dependencies:
             - aspectation
-            - text
 tests:
     aspectation-test:
         main: AllTests.hs
@@ -63,6 +71,11 @@ tests:
             - -Wno-all-missed-specialisations
             - -Wno-missed-specialisations
             - -Wno-unused-packages
+            - -Wno-missing-role-annotations
         dependencies:
+        - aspectation
         - tasty
+        - tasty-hunit
+        - tasty-quickcheck
+        - quickcheck-instances
 
